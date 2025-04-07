@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { MoveLeft, MoveRight, Eye, Search } from "lucide-react";
 
 const mockData = new Array(50).fill({
   eventName: "Filled Name",
@@ -34,14 +34,20 @@ export default function EventRequestsPage() {
         <div className="flex justify-between items-center mb-6 px-6">
           <h1 className="text-3xl font-semibold">Event Requests</h1>
           <div className="flex items-center gap-4">
-            <input
-              type="text"
-              placeholder="Search here"
-              className="px-4 py-2 rounded-lg bg-[#2b1f47] text-white border   focus:outline-none"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <button className="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-lg">
+            <div className=" rounded-lg bg-[#2b1f47] text-white border   flex">
+              <div className="ps-2 pe-2 py-4">
+                <Search size={18} />
+              </div>
+              <input
+                type="text"
+                placeholder="Search here"
+                className="pe-4 py-2 rounded-lg bg-[#2b1f47] text-white focus:outline-none"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+
+            <button className="bg-gradient-to-br from-[#FF00FF] to-[#8F00FF] hover:bg-pink-700 text-white px-4 py-2 rounded text-lg">
               ＋
             </button>
           </div>
@@ -52,6 +58,7 @@ export default function EventRequestsPage() {
           <table className="w-full text-left text-sm border-collapse">
             <thead className="bg-[#D175B6] text-black">
               <tr>
+                <th className="py-2 px-4"></th>
                 <th className="py-2 px-4">Event Name</th>
                 <th className="py-2 px-4">Event Start</th>
                 <th className="py-2 px-4">Event End</th>
@@ -68,6 +75,9 @@ export default function EventRequestsPage() {
                     idx % 2 === 0 ? "bg-[#2c254d]" : "bg-[#1e1a38]"
                   } hover:bg-[#3a2a63] border-b border-pink-500`}
                 >
+                  <td className="py-2 px-4">
+                    <Eye />
+                  </td>
                   <td className="py-2 px-4">{event.eventName}</td>
                   <td className="py-2 px-4">{event.eventStart}</td>
                   <td className="py-2 px-4">{event.eventEnd}</td>
@@ -86,7 +96,7 @@ export default function EventRequestsPage() {
             onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
           >
-            <ChevronLeft />
+            <MoveLeft />
           </button>
           {[...Array(totalPages)].map((_, i) => (
             <button
@@ -107,7 +117,7 @@ export default function EventRequestsPage() {
             }
             disabled={currentPage === totalPages}
           >
-            <ChevronRight />
+            <MoveRight />
           </button>
         </div>
       </main>

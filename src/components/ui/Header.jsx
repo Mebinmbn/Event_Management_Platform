@@ -6,8 +6,9 @@ export default function Header() {
     <header className="flex justify-between items-center p-4">
       <img src={logo} alt="" className="h-10" />
       <div className="flex items-center gap-4">
-        <Bell size={18} />
         <Info size={18} />
+        <Bell size={18} />
+
         <div className="flex items-center space-x-2">
           <img
             src="https://i.pravatar.cc/30"
