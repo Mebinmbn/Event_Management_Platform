@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { MoveLeft, MoveRight, Sparkle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function EventPage() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Assign Coordinator/Coordinator");
   const tabs = [
     "Event Details",
@@ -17,11 +19,14 @@ export default function EventPage() {
     quantity: 20,
   });
 
+  const handleClick = () => {
+    navigate(-1);
+  };
+
   return (
-    <div className="min-h-screen  text-white p-6 rounded-xl border border-pink-500 shadow-lg">
-      {/* Header */}
+    <div className="min-h-screen  text-white p-2 md:p-6 rounded-xl border border-pink-500 shadow-lg">
       <div className="flex gap-3">
-        <div className="py-2">
+        <div className="py-2" onClick={handleClick}>
           <MoveLeft />
         </div>
         <h1 className="text-3xl font-bold mb-6">
@@ -32,8 +37,7 @@ export default function EventPage() {
         </h1>
       </div>
 
-      {/* Tabs */}
-      <div className="flex border border-pink-400 rounded overflow-hidden mb-6 w-fit">
+      <div className="flex border border-pink-400 rounded  mb-6 w-fit overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -49,7 +53,6 @@ export default function EventPage() {
         ))}
       </div>
 
-      {/* Assign Coordinator */}
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-6 mb-6">
         <div>
           <h2 className="font-semibold mb-2">Assign Coordinator</h2>
@@ -83,10 +86,8 @@ export default function EventPage() {
         </div>
       </div>
 
-      {/* Assign Contractor */}
       <h2 className="font-semibold mb-4">Assign Contractor</h2>
-      <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
-        {/* Left: Meeting Rooms */}
+      <div className="lg:grid lg:grid-cols-3 grid-cols-1 gap-4">
         <div className="space-y-3 rounded-lg border border-pink-400 bg-black p-3">
           {[1, 2, 3, 4, 5].map((num) => (
             <div
@@ -114,8 +115,7 @@ export default function EventPage() {
           ))}
         </div>
 
-        {/* Right: Positions Table */}
-        <div className="lg:col-span-2 col-span-4">
+        <div className="lg:col-span-2 col-span-5">
           <h1 className="mb-4">Positions</h1>
           <div className="border bg-black border-pink-400 rounded-xl py-4">
             <div className="grid grid-cols-5 font-semibold border-b border-pink-400 p-2 mb-2">
@@ -140,7 +140,6 @@ export default function EventPage() {
               </div>
             ))}
 
-            {/* Pagination */}
             <div className="flex justify-center mt-4">
               <button className="px-2">
                 <MoveLeft />
@@ -156,7 +155,6 @@ export default function EventPage() {
         </div>
       </div>
 
-      {/* Save Button */}
       <div className="flex justify-center mt-8">
         <button className="bg-[#D85AD8] text-white px-8 py-4 rounded-xl  shadow-lg hover:bg-pink-600 transition">
           Save Edits

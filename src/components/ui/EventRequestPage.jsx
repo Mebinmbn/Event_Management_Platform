@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MoveLeft, MoveRight, Eye, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const mockData = new Array(50).fill({
   eventName: "Filled Name",
@@ -13,6 +14,7 @@ const mockData = new Array(50).fill({
 export default function EventRequestsPage() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
   const itemsPerPage = 14;
 
   const filteredData = mockData.filter((item) =>
@@ -26,14 +28,16 @@ export default function EventRequestsPage() {
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
+  const handleClick = () => {
+    navigate("/event");
+  };
+
   return (
     <div className="w-full  min-h-screen  text-white  font-sans ">
-      {/* Main Content */}
-      <main className="flex-1 h-full py-6 border-2 border-[#D175B6] rounded-lg">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-6 px-6">
+      <main className="flex-1 h-full md:py-6 border-2 border-[#D175B6] rounded-lg">
+        <div className="flex justify-between items-center mb-6 px-6 flex-wrap">
           <h1 className="text-3xl font-semibold">Event Requests</h1>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 flex-wrap">
             <div className=" rounded-lg bg-[#2b1f47] text-white border   flex">
               <div className="ps-2 pe-2 py-4">
                 <Search size={18} />
@@ -53,8 +57,7 @@ export default function EventRequestsPage() {
           </div>
         </div>
 
-        {/* Table */}
-        <div className=" border border-pink-500 overflow-hidden">
+        <div className=" border border-pink-500 overflow-x-auto">
           <table className="w-full text-left text-sm border-collapse">
             <thead className="bg-[#D175B6] text-black">
               <tr>
@@ -75,7 +78,7 @@ export default function EventRequestsPage() {
                     idx % 2 === 0 ? "bg-[#2c254d]" : "bg-[#1e1a38]"
                   } hover:bg-[#3a2a63] border-b border-pink-500`}
                 >
-                  <td className="py-2 px-4">
+                  <td className="py-2 px-4" onClick={handleClick}>
                     <Eye />
                   </td>
                   <td className="py-2 px-4">{event.eventName}</td>
@@ -90,7 +93,6 @@ export default function EventRequestsPage() {
           </table>
         </div>
 
-        {/* Pagination */}
         <div className="flex bg-gray-950 p-5 justify-center mt-6 items-center space-x-2 text-#D175B6">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}

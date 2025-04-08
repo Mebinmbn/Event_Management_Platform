@@ -8,8 +8,8 @@ export default function Sidebar({ isOpen, getSidebarOpen }) {
   return (
     <aside
       className={`${
-        isOpen ? "block" : "hidden"
-      } lg:block  w-64 min-h-screen p-4 bg-[#1a102d] rounded-lg border-2 border-[#D175B6] shadow-[0_0_10px_rgba(255,0,255,0.3)] flex flex-col justify-between`}
+        isOpen ? "flex" : "hidden"
+      } lg:flex w-64 h-full min-h-screen p-4 bg-[#1a102d] rounded-lg border-2 border-[#D175B6] shadow-[0_0_10px_rgba(255,0,255,0.3)] flex-col justify-between`}
     >
       <div className="lg:hidden ml-auto">
         <h1 onClick={() => getSidebarOpen(false)} className="cursor-pointer">
@@ -17,7 +17,6 @@ export default function Sidebar({ isOpen, getSidebarOpen }) {
         </h1>
       </div>
       <div>
-        {/* Events Dropdown */}
         <div className="mb-4">
           <button
             onClick={() => setOpenEvents(!openEvents)}
@@ -47,13 +46,11 @@ export default function Sidebar({ isOpen, getSidebarOpen }) {
           )}
         </div>
 
-        {/* Static Sections */}
         <div className="text-white space-y-4 text-sm font-medium">
           <div className="hover:text-pink-400 cursor-pointer">Positions</div>
           <div className="hover:text-pink-400 cursor-pointer">Contractors</div>
         </div>
 
-        {/* Users Dropdown */}
         <div className="mt-6">
           <button
             onClick={() => setOpenUsers(!openUsers)}
@@ -77,13 +74,11 @@ export default function Sidebar({ isOpen, getSidebarOpen }) {
           )}
         </div>
 
-        {/* Profile */}
         <div className="mt-6 text-white text-sm font-medium hover:text-pink-400 cursor-pointer">
           Profile
         </div>
       </div>
 
-      {/* Logout Button */}
       <div className="mt-10">
         <button className="w-full flex items-center justify-center gap-2 py-2 bg-black text-white rounded hover:bg-pink-600 transition">
           <LogOut size={16} />

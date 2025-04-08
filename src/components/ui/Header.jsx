@@ -19,7 +19,7 @@ export default function Header({ getSidebarOpen }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 hidden md:flex">
         <Info size={18} />
         <Bell size={18} />
 
