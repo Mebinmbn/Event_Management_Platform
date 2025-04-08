@@ -1,6 +1,6 @@
 import React from "react";
-import EventRequestsPage from "./EventRequestPage";
 import Layout from "./ui/Layout";
+import EventRequestsPage from "./ui/EventRequestPage";
 
 function EventRequests() {
   return (

@@ -1,10 +1,24 @@
-import { Bell, Info } from "lucide-react";
+import { Bell, Info, Menu } from "lucide-react";
 import logo from "../../assets/image.png";
+import { useState } from "react";
 
-export default function Header() {
+export default function Header({ getSidebarOpen }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleMenuClick = () => {
+    setIsOpen(!isOpen);
+    getSidebarOpen(isOpen);
+  };
   return (
     <header className="flex justify-between items-center p-4">
-      <img src={logo} alt="" className="h-10" />
+      <div className="flex gap-2">
+        <img src={logo} alt="" className="h-10" />
+        <div className="lg:hidden mt-2">
+          <button onClick={handleMenuClick}>
+            <Menu size={28} />
+          </button>
+        </div>
+      </div>
+
       <div className="flex items-center gap-4">
         <Info size={18} />
         <Bell size={18} />

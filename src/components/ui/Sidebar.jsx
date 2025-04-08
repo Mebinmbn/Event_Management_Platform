@@ -1,18 +1,27 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, LogOut } from "lucide-react";
+import { ChevronDown, ChevronUp, LogOut, CircleX } from "lucide-react";
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, getSidebarOpen }) {
   const [openEvents, setOpenEvents] = useState(true);
   const [openUsers, setOpenUsers] = useState(true);
 
   return (
-    <aside className="w-64 min-h-screen p-4 rounded-lg  border-2 border-[#D175B6] shadow-[0_0_10px_rgba(255,0,255,0.3)] flex flex-col justify-between">
+    <aside
+      className={`${
+        isOpen ? "block" : "hidden"
+      } lg:block  w-64 min-h-screen p-4 bg-[#1a102d] rounded-lg border-2 border-[#D175B6] shadow-[0_0_10px_rgba(255,0,255,0.3)] flex flex-col justify-between`}
+    >
+      <div className="lg:hidden ml-auto">
+        <h1 onClick={() => getSidebarOpen(false)} className="cursor-pointer">
+          <CircleX />
+        </h1>
+      </div>
       <div>
         {/* Events Dropdown */}
         <div className="mb-4">
           <button
             onClick={() => setOpenEvents(!openEvents)}
-            className="w-full flex justify-between items-center px-4 py-2 text-pink-400 font-medium bg-[#2a1748] rounded-lg  focus:border-2 focus:border-[#D175B6] transition"
+            className="w-full flex justify-between items-center px-4 py-2 text-pink-400 font-medium bg-[#2a1748] rounded-lg focus:border-2 focus:border-[#D175B6] transition"
           >
             Events
             {openEvents ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
@@ -75,7 +84,7 @@ export default function Sidebar() {
       </div>
 
       {/* Logout Button */}
-      <div className="mt-10 ">
+      <div className="mt-10">
         <button className="w-full flex items-center justify-center gap-2 py-2 bg-black text-white rounded hover:bg-pink-600 transition">
           <LogOut size={16} />
           Logout
